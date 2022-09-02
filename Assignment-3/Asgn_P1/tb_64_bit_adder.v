@@ -1,0 +1,69 @@
+`timescale 1ns / 1ps
+
+////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer:
+//
+// Create Date:   15:28:33 08/26/2022
+// Design Name:   _64_bit_adder
+// Module Name:   C:/Users/Student/Asgn_3_Grp_56/tb_64_bit_adder.v
+// Project Name:  Asgn_3_Grp_56
+// Target Device:  
+// Tool versions:  
+// Description: 
+//
+// Verilog Test Fixture created by ISE for module: _64_bit_adder
+//
+// Dependencies:
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+////////////////////////////////////////////////////////////////////////////////
+
+/* 
+
+    * Assignment - 3
+    * Problem - 1.c
+    * Semester - 5 (Autumn)
+    * Group - 56
+    * Group members - Utsav Mehta (20CS10069) and Vibhu (20CS10072)
+
+*/
+
+module tb_64_bit_adder;
+
+    // Inputs and Outputs
+    reg [63:0] input_a, input_b;
+    reg carry_in;
+    wire [63:0] sum;
+    wire carry_out;
+
+    // Module Instantiations (Unit Under Test)
+    s64_bit_adder tb_(input_a, input_b, carry_in, sum, carry_out);
+
+    initial begin
+        
+        $monitor ("a = %d, b = %d, carry_in = %d, sum = %d, carry_out", input_a, input_b, carry_in, sum, carry_out);
+
+        // Input values initialization
+        input_a = 64'd1245634;
+		  input_b = 64'd87903422;
+		  carry_in = 1;
+        #50;
+        input_a = 64'd9999;
+		  input_b = 64'd2222;
+		  carry_in = 0;
+        #50;
+        input_a = 64'd8691649;
+		  input_b = 64'd2;
+		  carry_in = 1;
+        #50;
+        input_a = 64'd90909;
+		  input_b = 64'd6452748058;
+		  carry_in = 0;
+
+    end
+
+endmodule
