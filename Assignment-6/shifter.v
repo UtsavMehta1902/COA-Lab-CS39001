@@ -12,7 +12,12 @@
 
 // arith_or_logic is 1 for arithmetic shift and 0 for logical shift
 
-module shifter(in, shamt, dir, arith_or_logic, out)
+module shifter(in, shamt, dir, arith_or_logic, out);
+
+    input signed [31:0] in;
+    input [31:0] shamt;
+    input dir, arith_or_logic;
+    output reg [31:0] out;
 
     always @(*) begin
         if(arith_or_logic) begin
