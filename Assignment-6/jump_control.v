@@ -17,45 +17,33 @@ module jump_control (opcode, sign, carry, zero, validJump);
     output reg validJump;
 
     always @(*) begin
+        validJump = 0;
         case (opcode)
             6'b000111 : begin           
                 if (sign && !zero)
                     validJump = 1;
-                else 
-                    validJump = 0;
             end
             6'b001000 : begin           
                 if (!sign && zero)
                     validJump = 1;
-                else 
-                    validJump = 0;
             end
             6'b001001 : begin           
                 if (!zero)
                     validJump = 1;
-                else 
-                    validJump = 0;
             end
-            6'b001010 : begin           
+            6'b001010 :      
                     validJump = 1;
-                end
-            6'b001011 : begin           
+            6'b001011 :           
                     validJump = 1;
-                end
-            6'b001100 : begin           
+            6'b001100 :      
                     validJump = 1;
-                end
-            6'b001101 : begin           
+            6'b001101 : begin
                 if (carry)
                     validJump = 1;
-                else 
-                    validJump = 0;
             end
             6'b001110 : begin           
                 if (!carry)
                     validJump = 1;
-                else 
-                    validJump = 0;
             end
             default : validJump = 0;
         endcase
