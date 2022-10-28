@@ -24,7 +24,7 @@ module ALU_unit(a, b, ALUsel, ALUop, carry, zero, sign, result);
     mux_32_to_1 mux1 (.a(a), .b(32'd1), .select(ALUsel), .out(out_mux1));
     mux_32_to_1 mux2 (.a(b), .b(out_not), .select(ALUsel), .out(out_mux2));
 
-    adder_32_bit adder (.a(out_mux1), .b(out_mux2), .c_in(1'b0), c_out(temp_carry), .sum(out_adder));
+    adder_32_bit adder (.a(out_mux1), .b(out_mux2), .c_in(1'b0), .c_out(temp_carry), .sum(out_adder));
 
     shifter shift (.in(out_mux1), .shamt(out_mux2), .dir(ALUop[1]), .arith_or_logic(ALUop[0]), .out(out_shifter));
 
