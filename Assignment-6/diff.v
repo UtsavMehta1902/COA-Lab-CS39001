@@ -63,5 +63,5 @@ module diff(a, b, out_diff);
             default: out_diff[4:0] = 5'b11111;
         endcase
     end
-    
+
 endmodule
