@@ -10,7 +10,7 @@
 
 */
 
-module register (rs, rt, regWrite, writeReg, writeData, clk, rst, readData1, readData2);
+module register (rs, rt, regWrite, writeReg, writeData, clk, rst, readReg_1, readReg_2);
 
     input [4:0] rs;
     input [4:0] rt;
@@ -19,25 +19,22 @@ module register (rs, rt, regWrite, writeReg, writeData, clk, rst, readData1, rea
     input [31:0] writeData;
     input clk;
     input rst;
-    output reg [31:0] readData1;
-    output reg [31:0] readData2;
+    output reg [31:0] readReg_1;
+    output reg [31:0] readReg_2;
 
-    reg signed [31:0] registerBank [31:0];
-    integer i;
+    reg signed [31:0] registerMemory [31:0];
 
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            for (i = 0; i < 32; i = i + 1)
-                registerBank[i] <= 32'b00000000000000000000000000000000;    // Initialize the register file with all zeroes
-        end else if (regWrite) begin
-            registerBank[writeReg] <= writeData;    // Write the data to the register file at the posedge of the clock
-        end 
+            for (integer i = 0; i < 32; i = i + 1)
+                registerMemory[i] <= 32'b00000000000000000000000000000000;
+        end else if (regWrite)
+            registerMemory[writeReg] <= writeData;    
     end
 
     always @(*) begin
-        // Read the data from the appropriate registers
-        readData1 = registerBank[rs];
-        readData2 = registerBank[rt];
+        readReg_1 = registerMemory[rs];
+        readReg_2 = registerMemory[rt];
     end
 
 endmodule
