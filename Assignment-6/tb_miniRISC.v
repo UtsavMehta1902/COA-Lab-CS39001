@@ -25,12 +25,11 @@ module tb_miniRISC;
         #5 rst = 0;
    
        #2905 
-        $display ("Content in register 19: %d", uut.DP.registerFile.registerBank[19]);
-        if (uut.DP.registerFile.registerBank[19] == -1) begin
+        $display ("Register 19 content (it's implication on next line): %d", uut.DP.registerFile.registerMemory[19]);
+        if (uut.DP.registerFile.registerMemory[19] == -1)
             $display("Element not found.");
-        end else begin
-            $display("Element found at index: %d", uut.DP.registerFile.registerBank[19]);
-        end
+        else
+            $display("Element found at index: %d", uut.DP.registerFile.registerMemory[19]);
         $finish;
         
     end
