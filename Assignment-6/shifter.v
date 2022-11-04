@@ -11,7 +11,7 @@
 */
 
 // arith_or_logic is 1 for arithmetic shift and 0 for logical shift
-
+// dir is 0 for right shift and 1 for left shift
 module shifter(in, shamt, dir, arith_or_logic, out);
 
     input signed [31:0] in;

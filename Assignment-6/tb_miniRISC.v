@@ -10,7 +10,6 @@
 
 */
 
-// Testbench for the KGPRISC top module
 module tb_miniRISC;
 
 	reg clk;
@@ -34,9 +33,6 @@ module tb_miniRISC;
         
     end
     
-    always begin
-        #10 
-        clk = ~clk;
-    end
+    always #10 clk = ~clk;
       
 endmodule

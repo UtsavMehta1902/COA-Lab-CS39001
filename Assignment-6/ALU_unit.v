@@ -21,6 +21,8 @@ module ALU_unit(a, b, ALUsel, ALUop, carry, zero, sign, result);
     wire temp_carry;
     wire [31:0] out_not, out_adder, out_shifter, out_and, out_xor, out_mux1, out_mux2;
 
+    assign out_not = ~b;
+    
     mux_32_to_1 mux1 (.a(a), .b(32'd1), .select(ALUsel), .out(out_mux1));
     mux_32_to_1 mux2 (.a(b), .b(out_not), .select(ALUsel), .out(out_mux2));
 
@@ -28,7 +30,6 @@ module ALU_unit(a, b, ALUsel, ALUop, carry, zero, sign, result);
 
     shifter shift (.in(out_mux1), .shamt(out_mux2), .dir(ALUop[1]), .arith_or_logic(ALUop[0]), .out(out_shifter));
 
-    assign out_not = ~b;
     assign out_and = out_mux1 & out_mux2;
     assign out_xor = out_mux1 ^ out_mux2;
 
